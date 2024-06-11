@@ -14,41 +14,44 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>-10</y>
-      <width>1011</width>
-      <height>1031</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="previousPageBtn">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>10</y>
-      <width>80</width>
+      <x>530</x>
+      <y>190</y>
+      <width>113</width>
       <height>25</height>
      </rect>
     </property>
-    <property name="text">
-     <string>&lt;</string>
-    </property>
    </widget>
-   <widget class="QPushButton" name="nextPageBtn">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>10</y>
-      <width>80</width>
-      <height>25</height>
+      <x>150</x>
+      <y>20</y>
+      <width>741</width>
+      <height>641</height>
      </rect>
     </property>
-    <property name="text">
-     <string>&gt;</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGraphicsView" name="graphicsView"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="prevButton">
+       <property name="text">
+        <string>prev</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextButton">
+       <property name="text">
+        <string>next</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
