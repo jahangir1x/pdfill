@@ -15,14 +15,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Initialize the QGraphicsScene
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    // Load the PDF document
     QString pdfFilePath = QFileDialog::getOpenFileName(this, "Open PDF", "", "PDF Files (*.pdf)");
     if (document->load(pdfFilePath) != QPdfDocument::NoError) {
-        // Handle error
         return;
     }
 
