@@ -70,6 +70,12 @@ void MainWindow::displayPage(int pageNumber)
     ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    QMainWindow::resizeEvent(event);
+    ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+}
+
 void MainWindow::on_nextButton_clicked()
 {
     if (currentPage < document->pageCount() - 1) {
