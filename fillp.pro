@@ -1,4 +1,4 @@
-QT       += core gui pdf widgets
+QT       += core gui pdf widgets sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,10 +12,12 @@ LIBS += -lpoppler-qt5
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    infodb.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    infodb.h \
     mainwindow.h
 
 FORMS += \

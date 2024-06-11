@@ -1,3 +1,4 @@
+#include "infodb.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPdfDocument>
@@ -6,6 +7,8 @@
 #include <QPdfWriter>
 #include <QPainter>
 #include <QFileDialog>
+#include <iostream>
+#include <ostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -110,6 +113,8 @@ void MainWindow::addTextToPage(const QString &text)
 
     QPainter painter(&writer);
 
+    QPair<double, double> coordinates = InfoDb::getCoordinates(10);
+
     for (int i = 0; i < document->pageCount(); ++i) {
         if (i > 0) {
             writer.newPage();
@@ -123,7 +128,8 @@ void MainWindow::addTextToPage(const QString &text)
             // Add the text to the current page
             painter.setPen(Qt::black);
             painter.setFont(QFont("Helvetica", 12));
-            painter.drawText(100, 100, text); // Adjust the position as needed
+            std::cout << "Coordinates: " << coordinates.first << ", " << coordinates.second << std::endl;
+            painter.drawText(coordinates.first, coordinates.second, text); // Adjust the position as needed
         }
     }
 
