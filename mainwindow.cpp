@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , document(new QPdfDocument(this))
     , currentPage(0)
+    , currentZoomLevel(1.0)
 {
     ui->setupUi(this);
 
@@ -67,6 +68,8 @@ void MainWindow::displayPage(int pageNumber)
     // Update the QGraphicsScene with the rendered image
     scene->clear();
     scene->addPixmap(QPixmap::fromImage(image));
+    ui->graphicsView->resetTransform();
+    ui->graphicsView->scale(currentZoomLevel, currentZoomLevel);
     ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
@@ -152,3 +155,17 @@ void MainWindow::on_saveButton_clicked()
     // Copy the modified PDF to the user-selected location
     QFile::copy("/home/zinis/document_modified.pdf", modifiedPdfFilePath);
 }
+
+void MainWindow::on_zoomInButton_clicked()
+{
+    currentZoomLevel += 0.1;
+    ui->graphicsView->scale(1.1, 1.1);
+}
+
+
+void MainWindow::on_zoomOutButton_clicked()
+{
+    currentZoomLevel -= 0.1;
+    ui->graphicsView->scale(0.9, 0.9);
+}
+
