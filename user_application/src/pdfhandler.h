@@ -28,7 +28,6 @@ class PdfHandler {
     QGraphicsScene *scene;
     QGraphicsView *view;
     QString pdfFilePath;
-    qreal currentZoomLevel;
     int currentPage;
 };
 

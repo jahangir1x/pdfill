@@ -1,0 +1,35 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Project",
+			"type": "shell",
+			"command": "cd build/Unnamed-Debug && qmake ../../pdfill.pro && make -j4",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		},
+		{
+			"label": "Run Project",
+			"type": "shell",
+			"command": "cd build/Unnamed-Debug && qmake ../../pdfill.pro && make -j4 && ./pdfill",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			}
+		}
+	]
+}

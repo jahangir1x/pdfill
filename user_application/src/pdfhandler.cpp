@@ -8,7 +8,6 @@ PdfHandler::PdfHandler(QGraphicsScene* scene, QGraphicsView* view) {
     this->scene = scene;
     this->view = view;
     document = new QPdfDocument();
-    currentZoomLevel = 1.0;
     currentPage = 0;
     QFile::copy(PDF_FILE_PATH, TEMP_FILE_PATH);
     if (document->load(PDF_FILE_PATH) != QPdfDocument::NoError) {
@@ -38,7 +37,7 @@ void PdfHandler::renderPage(int pageNumber) {
     this->scene->clear();
     this->scene->addPixmap(QPixmap::fromImage(image));
     this->view->resetTransform();
-    this->view->scale(currentZoomLevel, currentZoomLevel);
+    this->view->scale(1, 1);
     this->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 void PdfHandler::renderNextPage() {
@@ -70,19 +69,16 @@ void PdfHandler::savePdf(QWidget* widget) {
 }
 
 void PdfHandler::setZoomLevel(qreal zoomLevel) {
-    currentZoomLevel = zoomLevel;
-    view->scale(currentZoomLevel, currentZoomLevel);
+    view->scale(zoomLevel, zoomLevel);
     // view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
 
 void PdfHandler::zoomIn() {
-    currentZoomLevel += 0.1;
-    setZoomLevel(currentZoomLevel);
+    setZoomLevel(1.1);
 }
 
 void PdfHandler::zoomOut() {
-    currentZoomLevel -= 0.1;
-    setZoomLevel(currentZoomLevel);
+    setZoomLevel(0.9);
 }
 
 void PdfHandler::addTextToPage(const QString& text, const QPair<double, double> coordinates) {
