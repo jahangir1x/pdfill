@@ -14,11 +14,13 @@ LIBS += -lpoppler-qt5
 SOURCES += \
     infodb.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    pdfhandler.cpp
 
 HEADERS += \
     infodb.h \
-    mainwindow.h
+    mainwindow.h \
+    pdfhandler.h
 
 FORMS += \
     mainwindow.ui
