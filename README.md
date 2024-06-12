@@ -14,7 +14,7 @@
 
     -   [x] Add custom text in pdf and save.
         -   > save in predefined location.
-    -   [ ] Get coordinates and content from sqlite and perform operations.
+    -   [x] Get coordinates and content from sqlite and perform operations.
     -   [ ] Get coordinates of placeholder text and show relevant text boxes in pdf in realtime.
     -   [ ] Save the filled information in sqlite.
     -   [ ] Add support for checkbox.
