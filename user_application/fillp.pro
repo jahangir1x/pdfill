@@ -12,18 +12,18 @@ LIBS += -lpoppler-qt5
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    infodb.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    pdfhandler.cpp
+    src/infodb.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/pdfhandler.cpp
 
 HEADERS += \
-    infodb.h \
-    mainwindow.h \
-    pdfhandler.h
+    src/infodb.h \
+    src/mainwindow.h \
+    src/pdfhandler.h
 
 FORMS += \
-    mainwindow.ui
+    ui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
