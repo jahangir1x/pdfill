@@ -19,16 +19,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
-    // textInput = new QLineEdit(this);
-    // addTextButton = new QPushButton("Add Text", this);
-    // saveButton = new QPushButton("Save PDF", this);
+    textInput = new QLineEdit(this);
+    addTextButton = new QPushButton("Add Text", this);
+    saveButton = new QPushButton("Save PDF", this);
 
-    // ui->verticalLayout->addWidget(textInput);
-    // ui->verticalLayout->addWidget(addTextButton);
-    // ui->verticalLayout->addWidget(saveButton);
+    ui->horizontalLayout->addWidget(textInput);
+    ui->horizontalLayout->addWidget(addTextButton);
+    ui->horizontalLayout->addWidget(saveButton);
 
-    // connect(addTextButton, &QPushButton::clicked, this, &MainWindow::on_addTextButton_clicked);
-    // connect(saveButton, &QPushButton::clicked, this, &MainWindow::on_saveButton_clicked);
+    connect(addTextButton, &QPushButton::clicked, this, &MainWindow::on_addTextButton_clicked);
+    connect(saveButton, &QPushButton::clicked, this, &MainWindow::on_saveButton_clicked);
 
     pdfHandler = new PdfHandler(scene, ui->graphicsView);
     pdfHandler->renderPage(0);
