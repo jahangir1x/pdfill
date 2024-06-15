@@ -1,9 +1,19 @@
 #include "infodb.h"
 
+#include <QCoreApplication>
+
+
+#include <QFileDialog>
+#include <QPdfWriter>
+#include <QPdfPageRenderer>
+
 QPair<double, double> InfoDb::getCoordinates(int id)
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("info.db");
+
+    QString appDir = QCoreApplication::applicationDirPath();
+
+    db.setDatabaseName(QDir(appDir).filePath("info.db"));
 
     if (!db.open()) {
         qDebug() << "Error: connection with database failed";

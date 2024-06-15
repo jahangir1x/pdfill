@@ -2,16 +2,21 @@
 
 #include <QFileDialog>
 #include <QPdfWriter>
-#include <iostream>
+#include <QCoreApplication>
+#include <QPdfPageRenderer>
 
 PdfHandler::PdfHandler(QGraphicsScene* scene, QGraphicsView* view) {
     this->scene = scene;
     this->view = view;
     document = new QPdfDocument();
     currentPage = 0;
-    QFile::copy(PDF_FILE_PATH, TEMP_FILE_PATH);
-    if (document->load(PDF_FILE_PATH) != QPdfDocument::NoError) {
-        std::cerr << "Failed to load the PDF document" << std::endl;
+    QString appDir = QCoreApplication::applicationDirPath();
+
+    QFile::copy(QDir(appDir).filePath(PDF_FILE_PATH), QDir(appDir).filePath(TEMP_FILE_PATH));
+    document->load(QDir(appDir).filePath(PDF_FILE_PATH));
+
+    if (document->status() != QPdfDocument::Status::Ready) {
+        qDebug() << "Failed to load PDF document. Status:" << document->status();
         return;
     }
 }
@@ -22,7 +27,7 @@ void PdfHandler::renderPage(int pageNumber) {
     }
 
     // Get the page size in points (1/72 inch)
-    QSizeF pageSize = document->pageSize(pageNumber);
+    QSizeF pageSize = document->pagePointSize(pageNumber);
 
     // Define the desired resolution in DPI
     const int dpi = 300;
@@ -40,6 +45,7 @@ void PdfHandler::renderPage(int pageNumber) {
     this->view->scale(1, 1);
     this->view->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 }
+
 void PdfHandler::renderNextPage() {
     if (currentPage < document->pageCount() - 1) {
         currentPage++;
@@ -65,7 +71,8 @@ void PdfHandler::savePdf(QWidget* widget) {
     }
 
     // Copy the modified PDF to the user-selected location
-    QFile::copy(TEMP_FILE_PATH, modifiedPdfFilePath);
+    QString appDir = QCoreApplication::applicationDirPath();
+    QFile::copy(QDir(appDir).filePath(TEMP_FILE_PATH), modifiedPdfFilePath);
 }
 
 void PdfHandler::setZoomLevel(qreal zoomLevel) {
@@ -82,7 +89,9 @@ void PdfHandler::zoomOut() {
 }
 
 void PdfHandler::addTextToPage(const QString& text, const QPair<double, double> coordinates) {
-    QPdfWriter writer(TEMP_FILE_PATH);
+
+    QString appDir = QCoreApplication::applicationDirPath();
+    QPdfWriter writer(QDir(appDir).filePath(TEMP_FILE_PATH));
     writer.setResolution(300);
     QPainter painter(&writer);
 

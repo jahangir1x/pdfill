@@ -25,3 +25,13 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+
+extern "C" {
+void __stack_chk_fail() {
+    // unsafe fix
+}
+
+void __stack_chk_guard() {
+    // unsafe fix
+}
+}
