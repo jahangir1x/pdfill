@@ -4,8 +4,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
-INCLUDEPATH += /usr/include/poppler/qt5
-LIBS += -lpoppler-qt5
+INCLUDEPATH += /usr/include/poppler/qt6
+LIBS += -lpoppler-qt6
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
